@@ -1,0 +1,138 @@
+/* ==============================================================================
+   ETAPA 9: A MOLDURA DO ARCADE E CONFIGURAÇÕES GERAIS
+   ============================================================================== */
+
+/* 1. IMPORTAÇÃO DA FONTE: Baixa a fonte retrô dos anos 80/90 do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* 2. O CORPO DA PÁGINA (A mesa/ambiente ao redor do fliperama) */
+body {
+    background-color: #111827;                /* Fundo cinza-chumbo escuro para destacar o jogo */
+    font-family: 'Press Start 2P', monospace;  /* Aplica a fonte pixelada em todo o documento */
+    min-height: 100vh;                        /* Faz a tela ocupar 100% da altura do monitor */
+    display: flex;                            /* Ativa o sistema flexbox de alinhamento */
+    justify-content: center;                  /* Centraliza o console na horizontal */
+    align-items: center;                      /* Centraliza o console na vertical */
+    margin: 0;                                /* Remove as bordas brancas padrão do navegador */
+}
+
+/* 3. O APARELHO DO JOGO (.game-device) */
+.game-device {
+    width: 100%;                              /* Ocupa a largura disponível até o limite */
+    max-width: 450px;                         /* Largura máxima simulando tela de smartphone/arcade */
+    min-height: 750px;                        /* Altura proporcional para caber a montanha */
+    background: #F7F3E9;                      /* Cor pergaminho suave da imagem de referência */
+    border: 5px solid #1E293B;                /* Borda grossa escura no estilo pixel art */
+    border-radius: 18px;                      /* Cantos arredondados do console portátil */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);/* Sombra 3D projetada sobre a mesa */
+    display: flex;                            /* Alinha os filhos em formato flexível */
+    flex-direction: column;                   /* Empilha os elementos um embaixo do outro */
+    overflow: hidden;                         /* Corta qualquer elemento que vazar da borda */
+}
+
+
+/* ==============================================================================
+   ETAPA 10: O TOPO DE STATUS E O LOGOTIPO DO PYTHON
+   ============================================================================== */
+
+/* 4. A BARRA DE STATUS SUPERIOR (.device-header) */
+.device-header {
+    background-color: #1E293B;                /* Barra escura no topo do aparelho */
+    color: #E2E8F0;                           /* Texto branco acinzentado de fácil leitura */
+    padding: 10px 16px;                       /* Respiro interno (10px vertical, 16px horizontal) */
+    display: flex;                            /* Ativa alinhamento flexível */
+    justify-content: space-between;           /* Separa o PYQUEST na esquerda e moedas na direita */
+    align-items: center;                      /* Centraliza verticalmente na linha */
+    font-size: 8px;                           /* Letrinhas pequenas estilo barra de celular */
+    border-bottom: 3px solid #0F172A;         /* Linha chanfrada dividindo o cabeçalho da tela */
+}
+
+/* O GRUPO DAS MOEDAS E ESTRELAS */
+.stats-badges {
+    display: flex;                            /* Coloca estrelas e moedas lado a lado */
+    gap: 12px;                                /* Espaço de 12px entre a estrela e a moeda */
+}
+
+/* 5. A SEÇÃO DO TÍTULO (FULL COURSE PYTHON) */
+.course-title-section {
+    text-align: center;                       /* Centraliza todo o texto no meio */
+    padding: 24px 10px 10px 10px;             /* Espaçamento em volta do título */
+}
+
+/* O SUBTÍTULO "FULL COURSE" */
+.sub-header-tag {
+    font-size: 10px;                          /* Tamanho pequeno e discreto */
+    letter-spacing: 2px;                      /* Espaço entre as letras para dar elegância */
+    color: #64748B;                           /* Tom de cinza médio clássico */
+    margin-bottom: 8px;                       /* Empurra o nome Python um pouco para baixo */
+    font-weight: bold;                        /* Letras em negrito */
+}
+
+/* O LOGOTIPO GIGANTE DO PYTHON */
+.main-python-logo {
+    font-size: 32px;                          /* Tamanho de destaque principal */
+    color: #2B5D8C;                           /* O azul royal oficial da logo do Python */
+    letter-spacing: 1px;                      /* Leve espaçamento entre as letras */
+    margin: 0;                                /* Zera as margens padrão do h1 */
+    text-shadow: 3px 3px 0 #1E3A5A;           /* Sombra 3D sólida azul-marinho para dar relevo */
+}
+
+
+/* ==============================================================================
+   ETAPA 11: O RODAPÉ EM GRADE E O BOTÃO 3D DE AÇÃO
+   ============================================================================== */
+
+/* 6. A FAIXA DE TERRA DO RODAPÉ (.features-footer-grid) */
+.features-footer-grid {
+    background-color: #58371B;                /* Cor de terra escura da base da montanha */
+    border-top: 5px solid #599C2A;            /* Borda de grama verde pixelada no topo da terra */
+    padding: 10px 12px;                       /* Espaçamento interno */
+    display: grid;                            /* Ativa o sistema moderno de grade (Grid) */
+    grid-template-columns: repeat(3, 1fr);    /* Divide em 3 colunas perfeitamente iguais */
+    gap: 6px;                                 /* Espacinho de 6px entre cada card */
+    margin-top: auto;                         /* Mola hidráulica: empurra o rodapé para o chão! */
+}
+
+/* OS 3 CARDS INFORMATIVOS (80% practice, schedule, certificate) */
+.feature-card {
+    background: #FAF7F0;                      /* Fundo creme dos cartões */
+    border: 2px solid #1E293B;                /* Borda preta de quadrinho retrô */
+    border-radius: 6px;                       /* Cantinhos levemente arredondados */
+    padding: 8px 4px;                         /* Espaço interno para o texto respirar */
+    text-align: center;                       /* Centraliza o texto dentro do card */
+    font-size: 6px;                           /* Letrinhas bem pequenas para caber certinho */
+    line-height: 1.3;                         /* Altura da linha para não colar os textos */
+    color: #1E293B;                           /* Cor de texto grafite escuro */
+    display: flex;                            /* Alinha o emoji e o texto */
+    align-items: center;                      /* Centraliza no eixo vertical */
+    justify-content: center;                  /* Centraliza no eixo horizontal */
+}
+
+/* 7. A ÁREA DO BOTÃO (.action-banner-area) */
+.action-banner-area {
+    background-color: #754C29;                /* Faixa de terra de transição */
+    padding: 12px 16px 18px 16px;             /* Respiro ao redor do botão */
+    text-align: center;                       /* Centraliza o botão */
+}
+
+/* O GRANDE BOTÃO VERDE PIXEL ART */
+.start-btn-pixel {
+    width: 100%;                              /* Ocupa a largura total da caixa */
+    padding: 14px 10px;                       /* Espaço generoso para o clique do dedo */
+    background: linear-gradient(180deg, #48BB78 0%, #2F855A 100%); /* Degradê verde volumoso */
+    color: #FFFFFF;                           /* Letras em branco brilhante */
+    font-family: 'Press Start 2P', monospace;  /* Fonte de videogame */
+    font-size: 13px;                          /* Tamanho grande e chamativo */
+    border: 3px solid #1E293B;                /* Borda preta sólida */
+    border-radius: 8px;                       /* Cantinhos com chanfro suave */
+    box-shadow: 0 6px 0 #1A4731, 0 8px 12px rgba(0, 0, 0, 0.3); /* Sombra 3D de bloco alto */
+    cursor: pointer;                          /* Transforma a seta em mãozinha de clique */
+    text-shadow: 1px 1px 0 #143A26;           /* Sombreado interno no texto do botão */
+    transition: all 0.1s ease;                /* Animação rápida e responsiva de transição */
+}
+
+/* O EFEITO DE PRESSIONAR O BOTÃO (:active) */
+.start-btn-pixel:active {
+    transform: translateY(4px);               /* Afunda o botão fisicamente 4 pixels na tela */
+    box-shadow: 0 2px 0 #1A4731;              /* Encurta a sombra para simular compressão 3D */
+}

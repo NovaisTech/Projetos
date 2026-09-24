@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyQuest: Full Course Python & APIs</title>
+    
+    <!--Conexão com estilo Pixel Art -->
+    <link rel="stylesheet" href="css/retro_pixel.css">
+</head>
+<body>
+
+    <!-- Moldura retrô inspirada na imagem do jogo -->
+    <div class="game-device">
+
+        <!-- 1. BARRA SUPERIOR DE STATUS (Moedas e Estrelas) -->
+        <header class="device-header">
+            <div class="header-title">🐍 PYQUEST</div>
+            <div class="stats-badges">
+                <span>⭐ <strong id="starsCount">0</strong></span>
+                <span>🪙 <strong id="coinsCount">0</strong></span>
+            </div>
+        </header>
+
+        <!-- 2. ÁREA CENTRAL (Montanha e Fases) -->
+        <main class="game-viewport">
+
+            <!-- Título do Curso igualzinho à imagem -->
+            <section class="course-title-section">
+                <div class="sub-header-tag">FULL COURSE</div>
+                <h1 class="main-python-logo">Python</h1>
+            </section>
+
+            <!-- Cenário: Trilha de Fases à esquerda + Montanha à direita -->
+            <div class="mountain-scene-container">
+                
+                <!-- Coluna da Esquerda: Onde a API vai listar os Níveis -->
+                <div class="levels-track" id="levelsTrack">
+                    <!-- Aqui o JavaScript vai desenhar Lv 1, Lv 2, Lv 3... -->
+                </div>
+
+                <!-- Coluna da Direita: Cenário da Montanha em Pixel Art -->
+                <div class="mountain-backdrop" id="mountainScene">
+                    <!-- Aqui desenharemos a montanha e o aventureiro escalando -->
+                </div>
+
+            </div>
+
+        </main>
+
+        <!-- 3. RODAPÉ: Os 3 cards da imagem (80% practice, schedule, certificate) -->
+        <footer class="features-footer-grid">
+            <div class="feature-card">
+                <span>⭐ 80% practice</span>
+            </div>
+            <div class="feature-card">
+                <span>💼 your own schedule</span>
+            </div>
+            <div class="feature-card">
+                <span>📜 certificate</span>
+            </div>
+        </footer>
+
+        <!-- 4. O GRANDE BOTÃO: START LEVEL 1 -->
+        <div class="action-banner-area">
+            <button id="startLevelBtn" class="start-btn-pixel">
+                START LEVEL 1 👆
+            </button>
+        </div>
+
+    </div>
+
+</body>
+</html>

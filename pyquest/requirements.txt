@@ -1,0 +1,11 @@
+# 1. Framework para criar a nossa API web em Python
+fastapi
+
+# 2. Servidor ultrarrápido que escuta a rede e entrega o jogo no navegador
+uvicorn
+
+# 3. Inspetor que valida se os dados enviados pelo jogador estão corretos
+pydantic
+
+# 4. Ferramenta para fazer requisições a outras APIs na internet
+requests
