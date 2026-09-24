@@ -23,9 +23,12 @@
         </header>
 
         <!-- 2. ÁREA CENTRAL (Montanha e Fases) -->
+        
+
+                <!-- 2. ÁREA CENTRAL (Montanha e Fases) -->
         <main class="game-viewport">
 
-            <!-- Título do Curso igualzinho à imagem -->
+            <!-- Título do Curso -->
             <section class="course-title-section">
                 <div class="sub-header-tag">FULL COURSE</div>
                 <h1 class="main-python-logo">Python</h1>
@@ -33,18 +36,63 @@
 
             <!-- Cenário: Trilha de Fases à esquerda + Montanha à direita -->
             <div class="mountain-scene-container">
-                
-                <!-- Coluna da Esquerda: Onde a API vai listar os Níveis -->
-                <div class="levels-track" id="levelsTrack">
-                    <!-- Aqui o JavaScript vai desenhar Lv 1, Lv 2, Lv 3... -->
-                </div>
+
+                <!-- Coluna da Esquerda: A Trilha de Fases (onde renderizaremos as fases via API) -->
+                <div class="levels-track" id="levelsTrack"></div>
 
                 <!-- Coluna da Direita: Cenário da Montanha em Pixel Art -->
                 <div class="mountain-backdrop" id="mountainScene">
-                    <!-- Aqui desenharemos a montanha e o aventureiro escalando -->
-                </div>
+                    
+                    <!-- Desenho Vetorial da Montanha (SVG) -->
+                    <svg class="mountain-svg" viewBox="0 0 220 520" preserveAspectRatio="none">
+                        <!-- Nuvens no céu -->
+                        <path d="M 30,50 Q 45,35 60,50 Q 75,35 90,50 L 90,65 L 30,65 Z" fill="#FFFFFF" opacity="0.8"/>
+                        <path d="M 120,120 Q 135,105 150,120 Q 165,105 180,120 L 180,135 L 120,135 Z" fill="#FFFFFF" opacity="0.6"/>
 
-            </div>
+                        <!-- Montanha do fundo (azulada e distante) -->
+                        <polygon points="50,480 120,260 190,480" fill="#6B8CAE" opacity="0.4"/>
+                        <polygon points="110,480 170,220 220,480" fill="#4B6E94" opacity="0.5"/>
+
+                        <!-- Montanha principal de terra marrom -->
+                        <path d="M 80,520 L 80,380 L 110,380 L 110,330 L 140,330 L 140,210 L 170,210 L 170,140 L 220,140 L 220,520 Z" fill="#754C29"/>
+                        
+                        <!-- Sombreamento de terra escura -->
+                        <path d="M 140,520 L 140,330 L 170,330 L 170,210 L 220,210 L 220,520 Z" fill="#58371B" opacity="0.4"/>
+
+                        <!-- Topo de grama verde pixelada nos degraus da montanha -->
+                        <rect x="80" y="376" width="34" height="8" fill="#599C2A"/>
+                        <rect x="110" y="326" width="34" height="8" fill="#599C2A"/>
+                        <rect x="140" y="206" width="34" height="8" fill="#599C2A"/>
+                        <rect x="170" y="136" width="50" height="10" fill="#599C2A"/>
+
+                        <!-- Árvore pixelada na base -->
+                        <rect x="178" y="390" width="8" height="25" fill="#543820"/>
+                        <circle cx="182" cy="380" r="16" fill="#3D7D21"/>
+                        <circle cx="182" cy="370" r="12" fill="#599C2A"/>
+                    </svg>
+
+                    <!-- Bandeira do Python no cume da montanha -->
+                    <div class="summit-flag">
+                        <div class="flag-cloth">🐍</div>
+                        <div class="flag-pole"></div>
+                    </div>
+
+                    <!-- Plataformas suspensas flutuantes com Moedas e Estrelas -->
+                    <div class="floating-platform plat-1"></div>
+                    <div class="item-coin coin-1">🪙</div>
+
+                    <div class="floating-platform plat-2"></div>
+                    <div class="item-star star-1">⭐</div>
+
+                    <div class="floating-platform plat-3"></div>
+                    <div class="item-coin coin-2">🪙</div>
+
+                    <div class="floating-platform plat-4"></div>
+                    <div class="item-star star-2">⭐</div>
+
+                </div> <!-- fecha mountain-backdrop -->
+
+            </div> <!-- fecha mountain-scene-container (ÂNCORA) -->
 
         </main>
 

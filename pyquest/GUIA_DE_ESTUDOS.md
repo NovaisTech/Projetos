@@ -652,6 +652,97 @@ Travar a base do console com o chão de terra da montanha, os cards informativos
 
 ---
 
+## 🏔️ ETAPA 12: O Cenário da Montanha em Pixel Art, Plataformas Suspensas e Levitação CSS
+
+Nesta etapa, demos vida ao coração visual do jogo: o cenário da montanha com suas plataformas de terra e grama, a bandeira do cume e os itens colecionáveis flutuando no ar!
+
+---
+
+### 1. Conceitos Teóricos e Analogias
+
+#### A. A Regra da Âncora (`position: relative` vs `position: absolute`)
+- **`position: relative`**: Funciona como o chão de um palco de teatro ou a âncora de um navio. Não tira o elemento do fluxo normal, mas estabelece um ponto de referência `(0,0)` para todos os elementos filhos que forem absolutos.
+- **`position: absolute`**: Tira o elemento do fluxo da página e o faz flutuar livremente nas coordenadas que você definir (`top`, `bottom`, `left`, `right`).
+- **O que aprendemos na prática:** Quando um elemento com `position: absolute` (como `.mountain-backdrop`) não encontra um pai com `position: relative`, ele se ancora no **navegador inteiro (`<body>`)**! Ao envolver tudo dentro da `<div class="mountain-scene-container">` com `position: relative`, a montanha ficou perfeitamente "presa" e delimitada dentro do videogame.
+
+#### B. Desenho Vetorial com SVG (`<svg>`)
+Diferente de imagens tradicionais como PNG ou JPG que ficam borradas ao dar zoom, o **SVG** (*Scalable Vector Graphics*) é puro código matemático:
+- `<polygon>`: Desenha formas com vários pontos conectados (usado para as montanhas distantes azuladas).
+- `<path>`: Desenha linhas e curvas complexas (usado para os degraus de terra e as nuvens no céu).
+- `<rect>` e `<circle>`: Formas geométricas puras (usadas para a grama pixelada e para a copa da árvore).
+
+#### C. A Física da Levitação com Animações CSS (`@keyframes`)
+Para fazer as moedas de ouro flutuarem e as estrelas pulsarem, usamos a dobradinha mágica do CSS:
+
+1. **`@keyframes`**: Define o roteiro da animação (o que acontece do ponto A até o ponto B).
+```css
+@keyframes coinLevitate {
+    0%   { transform: translateY(0); }     /* Posição inicial no chão */
+    100% { transform: translateY(-6px); }  /* Sobe 6 pixels no ar */
+}
+```
+
+2. **A Propriedade `animation`**: Aplica o roteiro ao elemento com os parâmetros de física:
+```css
+animation: coinLevitate 1.8s ease-in-out infinite alternate;
+```
+- **`1.8s`**: Tempo total de cada viagem.
+- **`ease-in-out`**: Efeito de aceleração suave (imita a gravidade natural desacelerando no topo).
+- **`infinite`**: Repete eternamente enquanto a página estiver aberta.
+- **`alternate`**: Faz o movimento de "ida e volta" suave (ao invés de pular bruscamente do final para o início).
+
+---
+
+### 2. Código HTML do Cenário Ancorado
+
+```html
+<!-- Cenário: Trilha de Fases à esquerda + Montanha à direita -->
+<div class="mountain-scene-container">
+
+    <!-- Coluna da Esquerda: A Trilha de Fases (gerada via API/JS) -->
+    <div class="levels-track" id="levelsTrack"></div>
+
+    <!-- Coluna da Direita: Cenário da Montanha em Pixel Art -->
+    <div class="mountain-backdrop" id="mountainScene">
+        
+        <!-- Desenho Vetorial da Montanha (SVG) -->
+        <svg class="mountain-svg" viewBox="0 0 220 520" preserveAspectRatio="none">
+            <!-- Nuvens, montanhas distantes, terra, grama e árvore -->
+        </svg>
+
+        <!-- Bandeira do Python no cume -->
+        <div class="summit-flag">
+            <div class="flag-cloth">🐍</div>
+            <div class="flag-pole"></div>
+        </div>
+
+        <!-- Plataformas suspensas com Moedas e Estrelas -->
+        <div class="floating-platform plat-1"></div>
+        <div class="item-coin coin-1">🪙</div>
+
+        <div class="floating-platform plat-2"></div>
+        <div class="item-star star-1">⭐</div>
+
+        <div class="floating-platform plat-3"></div>
+        <div class="item-coin coin-2">🪙</div>
+
+        <div class="floating-platform plat-4"></div>
+        <div class="item-star star-2">⭐</div>
+
+    </div> <!-- fecha mountain-backdrop -->
+
+</div> <!-- fecha mountain-scene-container (ÂNCORA) -->
+```
+
+---
+
+### 📸 Evidências da Etapa 12:
+
+**A montanha pousada com precisão cirúrgica dentro do console portátil, com itens colecionáveis flutuando:**
+![Montanha perfeitamente ancorada com plataformas e itens](docs/prints/media_1790227598022.png)
+
+---
+
 > 💡 **Dica de Estudo:** Você pode consultar este arquivo a qualquer momento no seu VS Code abrindo `GUIA_DE_ESTUDOS.md`. Para visualizar formatado com as imagens no VS Code, aperte `Ctrl + Shift + V`!
 
 

@@ -136,3 +136,201 @@ body {
     transform: translateY(4px);               /* Afunda o botão fisicamente 4 pixels na tela */
     box-shadow: 0 2px 0 #1A4731;              /* Encurta a sombra para simular compressão 3D */
 }
+
+
+/* ==============================================================================
+   ETAPA 12: O CENÁRIO DA MONTANHA E PLATAFORMAS FLUTUANTES
+   ============================================================================== */
+
+/* O CONTAINER DO MEIO: Divide a tela entre Fases (esquerda) e Montanha (direita) */
+.mountain-scene-container {
+    position: relative;                       /* Serve de âncora para os itens absolutos */
+    min-height: 480px;                        /* Altura do cenário da montanha */
+    display: flex;                            /* Alinha a trilha na esquerda e montanha na direita */
+}
+
+/* O CENÁRIO DA MONTANHA (Lado direito) */
+.mountain-backdrop {
+    position: absolute;                       /* Encaixa perfeitamente no fundo */
+    right: 0;                                 /* Gruda no canto direito */
+    bottom: 0;                                /* Encosta no chão */
+    width: 48%;                               /* Ocupa 48% da largura da tela */
+    height: 100%;                             /* Ocupa 100% da altura do container */
+    pointer-events: none;                     /* Não atrapalha os cliques do usuário */
+}
+
+.mountain-svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* A BANDEIRA DO PYTHON NO TOPO */
+.summit-flag {
+    position: absolute;
+    top: 95px;
+    right: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flag-cloth {
+    background: #2563EB;                      /* Fundo azul da bandeira */
+    border: 2px solid #1E3A8A;
+    padding: 2px 4px;
+    border-radius: 2px 5px 5px 2px;
+    font-size: 10px;
+}
+
+.flag-pole {
+    width: 3px;
+    height: 42px;                             /* Mastro de metal da bandeira */
+    background: #94A3B8;
+    border: 1px solid #475569;
+}
+
+/* PLATAFORMAS FLUTUANTES SUSPENSAS (Blocos de terra com grama em cima) */
+.floating-platform {
+    position: absolute;
+    background: #754C29;                      /* Bloco de terra marrom */
+    border: 2px solid #3D220E;
+    border-top: 4px solid #599C2A;            /* Topo com camada de grama verde */
+    border-radius: 2px;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.15);
+}
+
+/* POSICIONAMENTO DAS 4 PLATAFORMAS */
+.plat-1 { bottom: 100px; right: 100px; width: 34px; height: 14px; }
+.plat-2 { bottom: 175px; right: 75px;  width: 34px; height: 14px; }
+.plat-3 { bottom: 250px; right: 55px;  width: 34px; height: 14px; }
+.plat-4 { bottom: 320px; right: 35px;  width: 32px; height: 14px; }
+
+/* MOEDAS DE OURO FLUTUANTES (Com animação de levitação!) */
+.item-coin {
+    position: absolute;
+    font-size: 14px;
+    animation: coinLevitate 1.8s ease-in-out infinite alternate; /* Sobe e desce suavemente */
+}
+
+.coin-1 { bottom: 122px; right: 108px; }
+.coin-2 { bottom: 272px; right: 63px; }
+
+/* ESTRELAS BRILHANTES */
+.item-star {
+    position: absolute;
+    font-size: 14px;
+    animation: starPulse 1.4s ease-in-out infinite alternate;
+}
+
+.star-1 { bottom: 197px; right: 83px; }
+.star-2 { bottom: 342px; right: 42px; }
+
+/* ANIMAÇÃO: MOEDA SUBINDO E DESCENDO */
+@keyframes coinLevitate {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-6px); }     /* Flutua 6 pixels para cima */
+}
+
+/* ANIMAÇÃO: ESTRELA PULSANDO */
+@keyframes starPulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.15); }          /* Aumenta 15% de tamanho */
+}
+
+/* ==============================================================================
+   ETAPA 13: A TRILHA DE FASES (Coluna da Esquerda)
+   ============================================================================== */
+
+/* 1. A COLUNA ESQUERDA (.levels-track) */
+.levels-track {
+    width: 52%;                               /* Ocupa a metade esquerda do console */
+    padding: 12px 6px 12px 14px;              /* Espaçamento interno */
+    display: flex;                            /* Alinhamento flexível */
+    flex-direction: column;                   /* Fases empilhadas de cima para baixo */
+    gap: 12px;                                /* Espaço entre cada fase */
+    z-index: 2;                               /* Fica acima de qualquer fundo */
+}
+
+/* 2. CADA ITEM DE FASE (.level-item) */
+.level-item {
+    display: flex;                            /* Ícone na esquerda, textos na direita */
+    align-items: center;                      /* Centraliza verticalmente */
+    gap: 8px;                                 /* Espaço entre ícone e texto */
+    position: relative;
+    cursor: pointer;                          /* Mãozinha ao passar o mouse */
+    transition: transform 0.15s ease;         /* Animação suave ao interagir */
+}
+
+.level-item:hover {
+    transform: translateX(3px);               /* Move 3px para a direita no hover! */
+}
+
+/* Linha pontilhada separando as fases (igual à imagem de referência) */
+.level-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 90%;
+    border-bottom: 1px dashed #CBD5E1;        /* Linha tracejada suave */
+}
+
+/* 3. A CAIXINHA DO ÍCONE PIXEL ART (.level-icon-box) */
+.level-icon-box {
+    position: relative;
+    width: 38px;
+    height: 38px;
+    background: #1E293B;                      /* Fundo escuro estilo terminal */
+    border: 2px solid #0F172A;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;                           /* Impede que o ícone seja esmagado */
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* O BADGE PEQUENO NO CANTO DO ÍCONE (Lv 1, Lv 2, etc.) */
+.level-badge {
+    position: absolute;
+    top: -5px;
+    right: -6px;
+    background: #2563EB;                      /* Azul para nível 1 */
+    color: #FFFFFF;
+    font-size: 5px;
+    padding: 2px 3px;
+    border-radius: 3px;
+    border: 1px solid #1E3A8A;
+    font-weight: bold;
+}
+
+/* 4. AS INFORMAÇÕES DA FASE (.level-info) */
+.level-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+/* O TÍTULO DESTACADO EM AMARELO */
+.level-title {
+    font-size: 7px;
+    line-height: 1.3;
+    color: #0F172A;
+    background: #FEF08A;                      /* Fundo amarelo suave idêntico à imagem */
+    padding: 2px 4px;
+    border-radius: 2px;
+    display: inline-block;
+}
+
+/* TAREFAS E DIFICULDADE */
+.level-tasks {
+    font-size: 6px;
+    color: #334155;                           /* Tom grafite */
+}
+
+.level-difficulty {
+    font-size: 6px;
+    color: #2563EB;                           /* Azul suave para a dificuldade */
+    font-weight: bold;
+}
