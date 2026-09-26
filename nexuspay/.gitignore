@@ -1,0 +1,24 @@
+# Ambientes virtuais do Python
+venv/
+.venv/
+env/
+
+# Arquivos de cache e compilação do Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Variáveis de ambiente e segredos (NUNCA SUBIR)
+.env
+*.env
+
+# Bancos de dados locais e arquivos de log
+*.db
+*.sqlite3
+*.log
+
+# Arquivos de configuração da IDE e do Sistema Operacional
+.vscode/
+Thumbs.db
+Desktop.ini
+.DS_Store
