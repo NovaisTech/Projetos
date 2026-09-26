@@ -174,21 +174,3 @@ Acessamos a rota raiz pelo navegador em `http://127.0.0.1:8000/`:
 3. **ASGI vs WSGI:** O Uvicorn roda sobre ASGI (_Asynchronous Server Gateway Interface_), permitindo lidar com conexões persistentes e assíncronas.
 4. **Decoradores e Rotas (`@app.get`):** Padrão de projeto que associa uma URL e um método HTTP diretamente a uma função de negócio.
 5. **Health Checks:** Padrão arquitetural indispensável em computação em nuvem para monitoramento autônomo de disponibilidade.
-
-````
-
-Salve o arquivo (`Ctrl + S`).
-
----
-
-#### Passo 3: Subir as imagens e a documentação para o GitHub!
-
-Agora que as imagens estão na pasta `docs/img/` e o documento aponta para elas, rode no terminal:
-
-```powershell
-git add docs/
-git commit -m "docs(nexuspay): adiciona prints organizados e ajusta links relativos da etapa 01"
-git push origin main
-````
-
-Assim que o `git push` terminar, atualize a página no seu navegador do GitHub: **todas as imagens vão carregar perfeitamente!**
