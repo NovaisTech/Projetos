@@ -29,60 +29,45 @@ A premissa central é o aprendizado prático e profundo de **arquitetura de soft
 
 ---
 
-### 2. Linha do Tempo da Sessão e Passos Executados
+### 2. Linha do Tempo e Desenvolvimento no VS Code
 
 #### Passo 1: O "Escudo de Segurança" (`.gitignore`)
 
-Iniciamos garantindo que nenhuma informação sigilosa (chaves de API, senhas, bancos de dados locais `.db`, arquivos de cache `__pycache__` ou ambientes virtuais `venv`) seja enviada para a internet.
+Iniciamos garantindo que nenhuma informação sigilosa (chaves de API, senhas, bancos de dados locais `.db`, arquivos de cache `__pycache__` ou ambientes virtuais `venv`) seja rastreada pelo projeto.
 
 ![Criação do .gitignore no VS Code](./img/01_gitignore.png)
 
-- **O que foi feito:** Criação do arquivo `.gitignore` com 24 linhas de regras de exclusão.
-- **Conceito:** Proteção ativa contra vazamento de credenciais e poluição do histórico de commits.
+- **O que foi feito:** Criação do arquivo `.gitignore` com 24 linhas de regras de exclusão no VS Code.
+- **Conceito:** Proteção ativa para manter o projeto limpo e prevenir vazamento de credenciais e caches compilados do Python.
 
 ---
 
-#### Passo 2: Adequação ao Monorepo da NovaisTech
+#### Passo 2: Estrutura da Pasta no VS Code
 
-Identificamos que o repositório principal no GitHub já é `NovaisTech / Projetos`, atuando como um monorepo/oficina com múltiplos projetos (como o `pyquest`).
+A pasta do projeto foi padronizada com o nome minúsculo `nexuspay`, sem espaços ou caracteres especiais, garantindo organização limpa no explorador lateral.
 
-![Repositório Monorepo NovaisTech no GitHub](./img/02_monorepo.png)
+![Visualização da Pasta no VS Code](./img/04_estrutura_vscode.png)
 
-- **Diagnóstico:** O comando `git init` anterior havia criado um `.git` isolado dentro da subpasta.
-- **Ação Corretiva:** Removemos o controle interno (`Remove-Item -Recurse -Force .git`) para que a pasta mãe gerencie todo o histórico sem conflito de submódulos.
-
-![Resolução do Git Interno](./img/03_resolucao_git.png)
+- **Conceito:** Nomes limpos facilitam a navegação no terminal, compatibilidade entre sistemas operacionais (Windows/Linux) e importação de módulos.
 
 ---
 
-#### Passo 3: Padronização de Nomenclatura e Abertura no VS Code
+#### Passo 3: Isolamento com Ambiente Virtual (`venv`)
 
-A pasta original se chamava `Rede de Vendas` (com espaços e maiúsculas). Para seguir o padrão do mercado e harmonizar com `pyquest`:
-
-1. Fechamos o bloqueio de arquivo do Windows.
-2. Renomeamos a pasta para `nexuspay`.
-3. Abrimos a pasta mãe `Projetos` no VS Code.
-
-![Visualização Unificada dos Projetos](./img/04_estrutura_vscode.png)
-
----
-
-#### Passo 4: Isolamento com Ambiente Virtual (`venv`)
-
-Criamos um laboratório Python exclusivo para o `nexuspay` para não misturar versões de bibliotecas globais da máquina.
+Criamos um laboratório Python exclusivo para o `nexuspay` no terminal do VS Code para não misturar versões de bibliotecas globais da máquina.
 
 ![Ambiente Virtual venv Criado e Ativado](./img/05_venv_ativado.png)
 
-- **Comandos:**
+- **Comandos executados:**
   ```powershell
   python -m venv venv
   .\venv\Scripts\Activate.ps1
   ```
-- **Indicador visual:** O prefixo `(venv)` em verde no terminal confirma a ativação.
+- **Indicador visual:** O prefixo `(venv)` em verde no terminal confirma que o ambiente isolado está ativo.
 
 ---
 
-#### Passo 5: Manifesto de Dependências (`requirements.txt`)
+#### Passo 4: Manifesto de Dependências (`requirements.txt`) e Instalação
 
 Declaramos formalmente os pacotes necessários para o ecossistema assíncrono:
 
@@ -93,21 +78,25 @@ Declaramos formalmente os pacotes necessários para o ecossistema assíncrono:
 - `httpx>=0.27.0` — Cliente HTTP assíncrono para comunicação entre servidores.
 - `pydantic>=2.6.0` — Validação estrita e modelagem de tipos de dados.
 
-Instalamos tudo no `venv` via `pip install -r requirements.txt`:
+Instalamos todos os pacotes dentro do `venv` usando o gerenciador de pacotes:
 
 ![Instalação das Bibliotecas via pip](./img/07_pip_install.png)
 
+```powershell
+pip install -r requirements.txt
+```
+
 ---
 
-#### Passo 6: Criação dos Módulos e Código do Servidor Central
+#### Passo 5: Criação dos Módulos e Código do Servidor Central
 
-Criamos a estrutura modular com três pilares:
+Criamos a estrutura modular com as três pastas do projeto:
 
 ```powershell
 mkdir concentrador, terminal_cliente, simulador
 ```
 
-Criamos o arquivo `concentrador/main.py`:
+Criamos o arquivo `concentrador/main.py` com o seguinte código:
 
 ```python
 from fastapi import FastAPI
@@ -131,22 +120,24 @@ async def checagem_saude():
     return {"status": "ok", "servico": "concentrador"}
 ```
 
+- **Visão Macro do Código:** Este arquivo implementa a Matriz do sistema, expondo endpoints HTTP assíncronos capazes de receber requisições em formato JSON.
+
 ---
 
-#### Passo 7: Debugging — O Aprendizado do _Working Directory_
+#### Passo 6: Debugging — O Aprendizado do _Working Directory_
 
-Ao tentar iniciar o servidor inicialmente de dentro da pasta `concentrador`, o Python gerou `ModuleNotFoundError: No module named 'concentrador'`:
+Ao tentar iniciar o servidor de dentro da subpasta `concentrador`, o Python gerou um erro de módulo não encontrado:
 
 ![Erro de Importação do Módulo](./img/08_debug_modulo.png)
 
-- **Diagnóstico de Engenharia:** Como o terminal já estava em `...\nexuspay\concentrador`, a instrução `concentrador.main:app` procurava uma pasta duplicada.
-- **Solução de Arquitetura:** Voltamos para a raiz do projeto com `cd ..` (`...\nexuspay`) para que todos os módulos sejam resolvidos a partir de um ponto único.
+- **Diagnóstico:** Como o terminal já estava em `...\nexuspay\concentrador`, a instrução `concentrador.main:app` tentava encontrar um caminho duplicado.
+- **Solução:** Retornamos para a raiz do projeto com `cd ..` (`...\nexuspay`) para que os módulos sejam referenciados de maneira uniforme.
 
 ---
 
-#### Passo 8: Servidor Central Operacional!
+#### Passo 7: Servidor Central Operacional!
 
-Executamos o comando com recarregamento em tempo real:
+Executamos o servidor ASGI com recarregamento em tempo real:
 
 ```powershell
 uvicorn concentrador.main:app --reload --port 8000
@@ -154,23 +145,24 @@ uvicorn concentrador.main:app --reload --port 8000
 
 ![Servidor Uvicorn e FastAPI Ativos](./img/09_servidor_rodando.png)
 
+> **Resultado:** O Uvicorn inicializou o servidor com sucesso na porta 8000 (`http://127.0.0.1:8000`).
+
 ---
 
-#### Passo 9: Verificação no Navegador e Requisições HTTP
+#### Passo 8: Verificação no Navegador e Requisições HTTP
 
-Acessamos a rota raiz pelo navegador em `http://127.0.0.1:8000/`:
+Testamos a rota raiz pelo navegador em `http://127.0.0.1:8000/`:
 
 ![Resposta JSON no Navegador e Logs](./img/10_browser_json.png)
 
-- **Status 200 OK:** Confirma que a API entregou o JSON com sucesso.
+- **Status 200 OK:** Confirma que a API processou e entregou o JSON com sucesso.
 - **404 Not Found no favicon.ico:** Resposta normal da web, indicando que o navegador solicitou o ícone de aba que ainda não foi implementado.
 
 ---
 
 ### 3. Conceitos-Chave Fixados Nesta Sessão
 
-1. **Monorepo:** Manter múltiplos projetos interdependentes sob um mesmo repositório Git simplifica o portfólio e a governança.
-2. **Ambiente Virtual (`venv`):** Isolamento de dependências para prevenir quebra de código entre projetos diferentes.
-3. **ASGI vs WSGI:** O Uvicorn roda sobre ASGI (_Asynchronous Server Gateway Interface_), permitindo lidar com conexões persistentes e assíncronas.
-4. **Decoradores e Rotas (`@app.get`):** Padrão de projeto que associa uma URL e um método HTTP diretamente a uma função de negócio.
-5. **Health Checks:** Padrão arquitetural indispensável em computação em nuvem para monitoramento autônomo de disponibilidade.
+1. **Ambiente Virtual (`venv`):** Isolamento estrito de dependências locais para evitar conflitos de versão entre projetos.
+2. **ASGI vs WSGI:** O Uvicorn roda sobre ASGI (_Asynchronous Server Gateway Interface_), permitindo lidar com conexões assíncronas e concorrentes.
+3. **Decoradores e Rotas (`@app.get`):** Padrão de projeto do FastAPI que vincula um método e URL a uma função assíncrona de negócio.
+4. **Health Checks:** Padrão arquitetural indispensável para monitorar a saúde e disponibilidade contínua do servidor.
