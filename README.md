@@ -52,3 +52,4 @@ O **NexusPay** é uma plataforma distribuída inspirada nos sistemas de bilhetag
 <div align="center">
   <sub>Desenvolvido com dedicação por <b>Renato Novais (NovaisTech)</b> • Sempre em constante evolução técnica.</sub>
 </div>
+
