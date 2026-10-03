@@ -743,7 +743,7 @@ animation: coinLevitate 1.8s ease-in-out infinite alternate;
 
 ---
 
-> 💡 **Dica de Estudo:** Você pode consultar este arquivo a qualquer momento no seu VS Code abrindo `GUIA_DE_ESTUDOS.md`. Para visualizar formatado com as imagens no VS Code, aperte `Ctrl + Shift + V`!
+
 
 
 
