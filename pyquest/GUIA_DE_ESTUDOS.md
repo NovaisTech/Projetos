@@ -20,6 +20,8 @@ Este documento foi estruturado especialmente para registrar cada etapa da constr
 - [Etapa 9: A Moldura do Arcade — `retro_pixel.css` & Centralização Flexbox](#-etapa-9-a-moldura-do-arcade--retro_pixelcss--centralização-flexbox)
 - [Etapa 10: O Topo de Status & O Logotipo 3D do Python](#-etapa-10-o-topo-de-status--o-logotipo-3d-do-python)
 - [Etapa 11: A Base do Jogo — Grid de Rodapé & Botão 3D "START LEVEL 1"](#-etapa-11-a-base-do-jogo--grid-de-rodapé--botão-3d-start-level-1)
+- [Etapa 12: O Cenário da Montanha em Pixel Art, Plataformas Suspensas e Levitação CSS](#-etapa-12-o-cenário-da-montanha-em-pixel-art-plataformas-suspensas-e-levitação-css)
+- [Etapa 13: A Conexão Full-Stack — FastAPI, CORS e JavaScript Assíncrono (fetch)](#-etapa-13-a-conexão-full-stack--fastapi-cors-e-javascript-assíncrono-fetch)
 
 ---
 
@@ -652,7 +654,7 @@ Travar a base do console com o chão de terra da montanha, os cards informativos
 
 ---
 
-## 🏔️ ETAPA 12: O Cenário da Montanha em Pixel Art, Plataformas Suspensas e Levitação CSS
+## 🏔️ Etapa 12: O Cenário da Montanha em Pixel Art, Plataformas Suspensas e Levitação CSS
 
 Nesta etapa, demos vida ao coração visual do jogo: o cenário da montanha com suas plataformas de terra e grama, a bandeira do cume e os itens colecionáveis flutuando no ar!
 
@@ -743,7 +745,7 @@ animation: coinLevitate 1.8s ease-in-out infinite alternate;
 
 ---
 
-## ⚡ ETAPA 13: A Conexão Full-Stack — FastAPI, CORS e JavaScript Assíncrono (fetch)
+## ⚡ Etapa 13: A Conexão Full-Stack — FastAPI, CORS e JavaScript Assíncrono (fetch)
 
 Nesta etapa, conectamos o cérebro da nossa aplicação: o servidor em Python passou a fornecer os dados das fases via API REST, e o navegador aprendeu a buscar esses dados dinamicamente usando JavaScript!
 
