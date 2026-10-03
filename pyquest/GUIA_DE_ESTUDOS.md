@@ -743,9 +743,114 @@ animation: coinLevitate 1.8s ease-in-out infinite alternate;
 
 ---
 
+## ⚡ ETAPA 13: A Conexão Full-Stack — FastAPI, CORS e JavaScript Assíncrono (fetch)
 
+Nesta etapa, conectamos o cérebro da nossa aplicação: o servidor em Python passou a fornecer os dados das fases via API REST, e o navegador aprendeu a buscar esses dados dinamicamente usando JavaScript!
 
+---
 
+### 1. Conceitos Teóricos e Analogias
+
+#### A. A Requisição Assíncrona (`fetch` com `async/await`)
+- **Analogia do Garçom:** Em uma aplicação web síncrona tradicional, a tela congelaria enquanto o servidor estivesse calculando a resposta. Com funções assíncronas (`async`), o JavaScript faz o pedido como um garçom e continua deixando a página fluida e responsiva. Quando a resposta do FastAPI chega (`await`), ele processa os dados sem travar a interface!
+- **`fetch()`**: A função nativa do JavaScript moderna para fazer requisições HTTP (substitui o antigo XMLHttpRequest).
+- **`await resposta.json()`**: O FastAPI entrega os dados em formato de texto estruturado (JSON). O método `.json()` transforma esse texto em uma lista de objetos Python-like que o JavaScript consegue percorrer facilmente.
+
+#### B. O Porteiro do Navegador: O que é CORS?
+- **CORS** (*Cross-Origin Resource Sharing* ou Compartilhamento de Recursos entre Origens Diferentes):
+  - Por padrão, os navegadores impedem que uma página rodando em uma porta (ex: o frontend em `http://localhost:5500` ou arquivo local `file:///`) faça requisições para outra porta (ex: a API em `http://localhost:8000`).
+  - Para permitir essa comunicação com segurança, configuramos o **CORSMiddleware** no FastAPI:
+    ```python
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],         # Permite requisições do frontend
+        allow_credentials=True,      # Autoriza envio de credenciais/cookies
+        allow_methods=["*"],         # Permite métodos GET, POST, PUT, DELETE
+        allow_headers=["*"],         # Permite cabeçalhos HTTP customizados
+    )
+    ```
+
+#### C. Manipulação Dinâmica do DOM (`document.createElement`)
+Em vez de escrever o HTML de cada fase manualmente no arquivo `index.html`, o código lê a lista entregue pelo FastAPI e constrói cada card na memória:
+1. `document.createElement("div")`: Cria a caixinha do card.
+2. `card.innerHTML = ...`: Preenche o ícone, o badge colorido e os textos com as informações vindas da API.
+3. `card.onclick = () => selecionarFase(fase)`: Adiciona a escuta do clique do jogador.
+4. `trackContainer.appendChild(card)`: Insere o card pronto dentro da coluna esquerda `.levels-track`.
+
+#### D. O Efeito Marca-Texto e a Linha Pontilhada no CSS
+- **`background: #FEF08A`**: Fundo amarelo suave no `.level-title` idêntico à arte conceitual, criando o destaque característico dos tópicos de curso retrô.
+- **`border-bottom: 1px dashed #CBD5E1`** via pseudo-elemento `::after`: Desenha uma linha tracejada elegante entre as fases, sem poluir a última fase graças à regra `:not(:last-child)`.
+- **Interatividade no Hover**: `.level-item:hover { transform: translateX(3px); }` move levemente a fase 3 pixels para a direita ao passar o mouse.
+
+---
+
+### 2. Código JavaScript do Cérebro do Jogo (`frontend/js/app.js`)
+
+```javascript
+const API_URL = "http://127.0.0.1:8000/api";
+
+document.addEventListener("DOMContentLoaded", () => {
+    carregarFases();
+    configurarBotaoPrincipal();
+});
+
+async function carregarFases() {
+    try {
+        const resposta = await fetch(`${API_URL}/levels`);
+        const fases = await resposta.json();
+        
+        const trackContainer = document.getElementById("levelsTrack");
+        trackContainer.innerHTML = "";
+        
+        fases.forEach(fase => {
+            const card = document.createElement("div");
+            card.className = "level-item";
+            card.onclick = () => selecionarFase(fase);
+            
+            card.innerHTML = `
+                <div class="level-icon-box">
+                    <span class="level-badge" style="background-color: ${fase.cor_badge}">${fase.badge}</span>
+                    <span>${fase.icone}</span>
+                </div>
+                <div class="level-info">
+                    <span class="level-title">${fase.titulo}</span>
+                    <span class="level-tasks">📜 ${fase.tarefas} tarefas</span>
+                    <span class="level-difficulty">⭐ ${fase.dificuldade}</span>
+                </div>
+            `;
+            trackContainer.appendChild(card);
+        });
+    } catch (erro) {
+        console.error("Erro ao carregar as fases da API:", erro);
+    }
+}
+
+function selecionarFase(fase) {
+    const botao = document.getElementById("startLevelBtn");
+    botao.innerText = `START ${fase.badge} 👆`;
+}
+
+function configurarBotaoPrincipal() {
+    const botao = document.getElementById("startLevelBtn");
+    botao.addEventListener("click", () => {
+        alert("🎮 Iniciando desafio no PyQuest! Prepare seu código Python!");
+    });
+}
+```
+
+---
+
+### 📸 Evidências da Etapa 13:
+
+**1. Servidor Backend FastAPI e Uvicorn online com suporte a CORS:**
+![Terminal do VS Code com Uvicorn online](docs/prints/media_1790465003534.png)
+
+**2. A aplicação Full-Stack conectada: fases carregadas da API e interatividade de seleção ativa:**
+![PyQuest Full-Stack funcionando com fases interativas](docs/prints/media_1791014372254.png)
+
+---
+
+> 💡 **Dica de Estudo:** Você pode consultar este arquivo a qualquer momento no seu VS Code abrindo `GUIA_DE_ESTUDOS.md`. Para visualizar formatado com as imagens e cores, aperte `Ctrl + Shift + V`!
 
 
 
