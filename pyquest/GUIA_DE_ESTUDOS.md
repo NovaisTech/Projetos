@@ -62,7 +62,7 @@ Navegar até a pasta `projetos`, criar a pasta `pyquest` e conferir se ela estav
 
 ---
 
-## 🏛️ Etapa 2: A Arquitetura em Três Pilares
+## 🏛 Etapa 2: A Arquitetura em Três Pilares
 
 ### 1. Conceito
 Na engenharia de software profissional, aplica-se o princípio de **Separação de Preocupações** (*Separation of Concerns*). Não misturamos lógica de servidor com telas ou regras pedagógicas:
@@ -318,7 +318,7 @@ A flag **`-m`** significa **Module** (Módulo). Em vez de pedir para o Windows e
 
 ---
 
-## 🏔️ Etapa 7: A Trilha da Montanha — Rota `/api/levels` & O Poder do Debugging
+## 🏔 Etapa 7: A Trilha da Montanha — Rota `/api/levels` & O Poder do Debugging
 
 ### 1. Conceito
 Nesta etapa, adicionamos ao servidor a inteligência sobre as fases da montanha do curso de Python:
@@ -654,7 +654,7 @@ Travar a base do console com o chão de terra da montanha, os cards informativos
 
 ---
 
-## 🏔️ Etapa 12: O Cenário da Montanha em Pixel Art, Plataformas Suspensas e Levitação CSS
+## 🏔 Etapa 12: O Cenário da Montanha em Pixel Art, Plataformas Suspensas e Levitação CSS
 
 Nesta etapa, demos vida ao coração visual do jogo: o cenário da montanha com suas plataformas de terra e grama, a bandeira do cume e os itens colecionáveis flutuando no ar!
 
